@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { todoContext } from '../Context/Context';
 
-const Create = (props) => {
+const Create = () => {
     const [title, settitle] = useState("");
-    const { tasks } = props;
-    const { settask } = props;
+    const [tasks, settasks] = useContext(todoContext);
     const submitHandler = (e) => {
         e.preventDefault();
         if (title !== "") {
             const newTask = { title, completed: false };
             const copyTask = [...tasks];
             copyTask.push(newTask);
-            // settask([...tasks, newTask])
-            settask(copyTask);
+            // settasks([...tasks, newTask])
+            settasks(copyTask);
         }
         settitle("");
     };

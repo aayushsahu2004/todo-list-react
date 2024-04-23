@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { todoContext } from '../Context/Context';
 
-const Show = (props) => {
-    const { tasks } = props;
-    const { settask } = props;
-
+const Show = () => {
+    const [tasks, settasks] = useContext(todoContext);
     const DeleteHandler = (i) => {
         const copyTask = [...tasks];
         let isValid = false;
@@ -13,7 +12,7 @@ const Show = (props) => {
 
         if (isValid || copyTask[i].completed) {
             copyTask.splice(i, 1);
-            settask(copyTask);
+            settasks(copyTask);
         };
     };
 
@@ -24,7 +23,7 @@ const Show = (props) => {
 
         const copyTask = [...tasks];
         copyTask[i].completed = !tasks[i].completed;
-        settask(copyTask);
+        settasks(copyTask);
     };
 
     let taksRender = <p className='text-zinc-400 text-center mt-32 text-base md:text-sm font-semibold'>No task is present</p>
